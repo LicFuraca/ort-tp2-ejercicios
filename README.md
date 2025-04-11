@@ -6,5 +6,7 @@ Este repositorio contiene los ejercicios requeridos para la cursada de la materi
 ## Lista de Ejercicios
 - **Beers**
 - **Nombre de archivo de videos**
+- **Servers**
+- **CRUD users**
 
 Cada ejercicio está organizado en su respectiva carpeta o archivo según corresponda.
