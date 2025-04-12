@@ -28,19 +28,29 @@ app.post(BASE_URL, (req, res) => {
 app.put(BASE_URL + "/:id", (req, res) => {
 	const id = req.params.id;
 	const users = getUsers();
-	const indexUser = users.findIndex((user) => user._id === id);
+	const indexUser = getIndexUserById(id, users);
 
 	if (indexUser === -1) {
 		res.send("El usuario no existe");
 		res.end();
 	}
 
-	users[indexUser] = {
-		...users[indexUser],
-		...req.body,
-	};
+	updateUser(indexUser);
+	res.send("Usuario actualizado", users[indexUser]);
+	res.end();
+});
 
-	fs.writeFileSync(PATH, JSON.stringify(users, null, 2));
+app.delete(BASE_URL + "/:id", (req, res) => {
+	const id = req.params.id;
+	const users = getUsers();
+	const index = getIndexUserById(id, users);
+
+	if (index === -1) {
+		res.send("El usuario no existe.");
+	}
+
+	deleteUser(index);
+	res.send("Usuario con id " + id + "eliminado.");
 	res.end();
 });
 
@@ -57,6 +67,10 @@ const getUserById = (id) => {
 	return users.find((user) => user._id === id);
 };
 
+const getIndexUserById = (id, users) => {
+	return users.findIndex((user) => user._id === id);
+};
+
 const saveNewUser = (user) => {
 	const users = getUsers();
 	users.push(user);
@@ -64,9 +78,17 @@ const saveNewUser = (user) => {
 	return user;
 };
 
-const updateUser = (id, user) => {
-	const newUser = {
-		_id: id,
-		...user,
+const updateUser = (indexUser) => {
+	users[indexUser] = {
+		...users[indexUser],
+		...req.body,
 	};
+
+	fs.writeFileSync(PATH, JSON.stringify(users, null, 2));
+};
+
+const deleteUser = (index) => {
+	const users = getUsers();
+	users.splice(index, 1);
+	fs.writeFileSync(PATH, JSON.stringify(users, null, 2));
 };
