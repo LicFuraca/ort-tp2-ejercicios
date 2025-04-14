@@ -1,3 +1,13 @@
+// CRUD SERVIDOR WEB
+// TODO Hacer un servidor web con express, que tenga los siguientes endpoints
+// get: /api/users --> devolver a todos los usuarios del archivo users.json
+// get: /api/user/_id --> devolver el usuario cuyo id es _id
+// post: /api/user/ --> dar alta un usuario en el archivo json
+
+// faltó:
+// update: /api/user/_id --> actualizar el usuario con id _id en el archivo json
+// delete: /api/user/_id --> eliminar usuario con id _id en el archivo json
+
 import express from "express";
 import fs from "fs";
 
