@@ -1,8 +1,8 @@
 import { MongoClient } from "mongodb";
 
-const uri = ""
+const url = "mongodb+srv://admin:tp2@cluster0.3bm3a.azure.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
-const client = new MongoClient(uri)
+const client = new MongoClient(url)
 
 let instance = null
 
@@ -16,4 +16,5 @@ export default async function getConnection() {
             console.log(error.message)
         }
     }
+    return instance
 }
