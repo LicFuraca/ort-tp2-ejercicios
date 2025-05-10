@@ -1,4 +1,6 @@
 /.idea/
 /servers/node_modules/
 /users/node_modules/
+/node_modules
 /ejercicio-api-1/node_modules/
+/data/connection.js
